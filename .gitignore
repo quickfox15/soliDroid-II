@@ -7,3 +7,8 @@ typechain
 #Hardhat files
 cache
 artifacts
+.idea/vcs.xml
+.idea/soliDroid-II.iml
+.idea/runConfigurations.xml
+.idea/modules.xml
+.idea/.gitignore
