@@ -1,3 +1,3 @@
 # SoliFroid II
 
-This project ...
+Solidity code, test and deploy scripts
