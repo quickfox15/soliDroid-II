@@ -193,7 +193,9 @@ contract BotInstance is ReentrancyGuard {
         buySwap(amount0,_token0, _token1); 
     }
 
-    function botLoop() external nonReentrant onlyManagerOrBeneficiary {
+    // function botLoop() external nonReentrant onlyManagerOrBeneficiary {
+    function botLoop() external nonReentrant  {
+
         //FIXME if a bot try to trade and get an error it will try again next botLoop
         //FIXME we need to add mechanisme to retry just x times and stop
         //not validation - save gas to good caller
@@ -266,8 +268,8 @@ contract BotInstance is ReentrancyGuard {
 
     function sellSwap(uint256 amount) private {
 
-        console.log(amount);
-        console.log(position.amount);
+        // console.log(amount);
+        // console.log(position.amount);
 
         require(position.open,"sell position: position not open");
         require(amount <= position.amount , "sell: insufficient balance");
