@@ -6,7 +6,7 @@ import "./BotInstance.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "hardhat/console.sol";
 
-contract SoliDroidManager is Ownable {
+contract Manager is Ownable {
 
     address immutable UNISWAP_V2_ROUTER;
     address immutable UNISWAP_V2_FACTORY;
@@ -66,6 +66,7 @@ contract SoliDroidManager is Ownable {
 //TODO test this function
     function removeBot() external {
         delete usersBot[msg.sender];
+        //TODO remove from array
     }
 
     function getBot() external view returns (BotInstance) {

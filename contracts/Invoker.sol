@@ -43,6 +43,6 @@ contract Invoker{
     function deposit() external payable {
         console.log("bot deposit deposit");
         console.log(msg.value);
-        botsBalance[msg.sender] = msg.value + botsBalance[msg.sender] ;
+        botsBalance[msg.sender].balance = msg.value + botsBalance[msg.sender].balance ;
     }
 } 

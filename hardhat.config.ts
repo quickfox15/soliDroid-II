@@ -30,6 +30,7 @@ const config: HardhatUserConfig = {
       forking: {
         url: `https://speedy-nodes-nyc.moralis.io/${process.env.MORALIS_KEY}/polygon/mainnet`,
       },
+      gasPrice: 100000,
       // "accounts": {
       //   "mnemonic": process.env.MNEMONIC_LOCAL
       // }
