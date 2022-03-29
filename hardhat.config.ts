@@ -35,12 +35,17 @@ const config: HardhatUserConfig = {
       //   "mnemonic": process.env.MNEMONIC_LOCAL
       // }
     },
-    // ropsten: {
-    //   url: process.env.ROPSTEN_URL || "",
-    //   accounts:
-    //     process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
-    // },
+    matic: {
+      url: `https://speedy-nodes-nyc.moralis.io/${process.env.MORALIS_KEY}/polygon/mainnet`,
+      chainId: 137,
+      gas: 65000000,
+      gasPrice: 45000000000, //current price on polygon is 30000000000
+      accounts: [process.env.POLY_ACCOUNT || ""],
+      gasMultiplier: 10,
+      blockGasLimit: 65000000,
+    },
   },
+
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,
     currency: "USD",
