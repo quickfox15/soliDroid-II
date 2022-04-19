@@ -12,7 +12,7 @@ import "hardhat/console.sol";
 contract BotInstance is ReentrancyGuard {
 
     Position private position;
-    BotConfig private config;
+    BotConfig public config;
 
     address private manager;
     address private beneficiary;

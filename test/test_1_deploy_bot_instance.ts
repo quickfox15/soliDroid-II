@@ -52,7 +52,7 @@ describe("test deploy bot", function () {
             defaultAmount,
             stopLossPercent,
             true);
-
+        
         console.log(`bot address: ${chalk.blue(botInstance.address)}`);
         let config = await botInstance.getConfig();
         console.log(config)

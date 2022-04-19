@@ -6,6 +6,10 @@ import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol';
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol';
 
+// import "@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol";
+// import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
+// import "@uniswap/v3-periphery/contracts/interfaces/IQuoter.sol";
+
 import "./SlSafeMath.sol";
 
 import "hardhat/console.sol";
@@ -22,9 +26,9 @@ struct Position {
     //change address to code with mapping
     address baseAsset;
 // uses single storage slot
-    uint112  openReserveA;        
-    uint112  openReserveB;    
-    uint32   blockTimestamp; 
+    uint112  openReserveA;
+    uint112  openReserveB;
+    uint32   blockTimestamp;
     //can add fields up to 256bit
     uint112 amount;
     uint16 sells;

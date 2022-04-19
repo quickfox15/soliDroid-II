@@ -35,7 +35,7 @@ contract SwapExamples {
         // Approve the router to spend DAI.
         TransferHelper.safeApprove(_tokenAddr0, address(swapRouter), amountIn);
 
-        //better to use oracle with 2 blocks avarage
+        //better to use oracle with 2 (or more) blocks avarage
         uint256 amountOutMinimum = 
             quoter.quoteExactInputSingle(
                 _tokenAddr0, 

@@ -1,7 +1,5 @@
 import { ethers } from "hardhat";
 import { BigNumber, Signer } from "ethers";
-import { SwapExamples } from "../typechain";
-import * as chai from 'chai';
 import { MockERC20__factory } from "../typechain/factories/MockERC20__factory";
 import chalk from "chalk";
 import { context } from "../scripts/utils/context";

@@ -24,13 +24,48 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 // Go to https://hardhat.org/config/ to learn more
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.4",
+  // solidity: "0.8.4",
+
+  solidity: {
+    compilers: [
+      {
+        version: "0.8.4",
+      }
+    ],
+    overrides: {
+      "contracts/test/OracleLibraryTest.sol": {  
+        version: "0.7.6",
+        settings: { }
+      },
+      "contracts/helpers/PoolHelper.sol": {  
+        version: "0.7.6",
+        settings: { }
+      },
+      "@uniswap/v3-periphery/contracts/libraries/OracleLibrary.sol":{
+        version: "0.7.6",
+        settings: { }
+      },
+      "@uniswap/v3-core/contracts/libraries/FullMath.sol":{
+        version: "0.7.6",
+        settings: { }
+      },
+      "@uniswap/v3-core/contracts/libraries/TickMath.sol":{
+        version: "0.7.6",
+        settings: { }
+      },
+      "@uniswap/v3-core/contracts/libraries/Oracle.sol":{
+        version: "0.7.6",
+        settings: { }
+      },
+    }
+  },
+
   networks: {
     hardhat: {
       forking: {
         url: `https://speedy-nodes-nyc.moralis.io/${process.env.MORALIS_KEY}/polygon/mainnet`,
       },
-      gasPrice: 100000,
+      gasPrice: 45000000000,
       // "accounts": {
       //   "mnemonic": process.env.MNEMONIC_LOCAL
       // }
