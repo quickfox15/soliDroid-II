@@ -37,6 +37,10 @@ const config: HardhatUserConfig = {
         version: "0.7.6",
         settings: { }
       },
+      "contracts/test/ObservationsTest.sol": {  
+        version: "0.7.6",
+        settings: { }
+      },
       "contracts/helpers/PoolHelper.sol": {  
         version: "0.7.6",
         settings: { }
@@ -65,7 +69,7 @@ const config: HardhatUserConfig = {
       forking: {
         url: `https://speedy-nodes-nyc.moralis.io/${process.env.MORALIS_KEY}/polygon/mainnet`,
       },
-      gasPrice: 45000000000,
+      gasPrice: 450000000000,
       // "accounts": {
       //   "mnemonic": process.env.MNEMONIC_LOCAL
       // }

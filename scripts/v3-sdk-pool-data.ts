@@ -86,7 +86,9 @@ async function main() {
         getPoolState(),
     ]);
 
+    console.log("token0");
     console.log(immutables.token0);
+    console.log("token1");
     console.log(immutables.token1);
 
     const TokenA = new Token(3, immutables.token0, 18, "----", "----");
