@@ -25,7 +25,6 @@ describe("test oracle library test", function () {
 
         const ObservationsTest = await ethers.getContractFactory("ObservationsTest");
         observationsTest = await ObservationsTest.deploy();
-
     });
 
     it("test observationsTest", async function () {
@@ -82,14 +81,46 @@ describe("test oracle library test", function () {
         var poolHelper = await PoolHelper__factory.connect(poolAddress,ethers.provider.getSigner());
 
         var oldest = new Date().getTime();
+        var prevTickCumulative = BigNumber.from(0);
+        var prevBlockTimestamp = 0;
         for (let index = 0; index < 65535; index++) {
             // console.log(index);
             var observation = await poolHelper.observations(index);
             if(observation.initialized==false){
                 break;
             }
-            console.log(new Date(1000*observation.blockTimestamp).toLocaleTimeString());
+
+            var time = new Date(1000*observation.blockTimestamp).toLocaleTimeString();
+            var tickDelta = observation.tickCumulative.sub(prevTickCumulative);
+            var timeDelta = observation.blockTimestamp - prevBlockTimestamp;
+            var tick = tickDelta.div(BigNumber.from(timeDelta));
+
+                /// @notice Calculates sqrt(1.0001^tick) * 2^96
+            var x = 1.0001^tick.toNumber();
+            console.log(x);
+            var sqrtRatioAtTick  = Math.sqrt(x) ;
+            console.log(sqrtRatioAtTick);
             
+            // var sqrtPriceX96 = BigNumber.from(sqrtRatioAtTick);// * (2^96)); //1481416271578313360511861525647228
+            // console.log(sqrtPriceX96.toString());
+ 
+            // var a = sqrtPriceX96.mul(sqrtPriceX96);
+            // var b = BigNumber.from("2").pow(BigNumber.from("96"));
+            // var c = a.div(b);
+            // console.log(c.toString());
+
+            console.log(`time: ${time}, tick cumulative: ${observation.tickCumulative}, tickDelta: ${tickDelta.toString()}, time delta: ${timeDelta}, tick: ${tick}`);
+
+            var price = await oracleTest.getQuoteAtTick(
+                tick,
+                BigNumber.from("1000000000000000000"),
+                token1Addr,//usdc
+                token0Addr//eth
+            );
+            console.log(price);
+            
+            prevTickCumulative = observation.tickCumulative;
+            prevBlockTimestamp = observation.blockTimestamp;
             oldest = oldest < observation.blockTimestamp ? oldest : observation.blockTimestamp;
         }
         console.log("oldest: ");
